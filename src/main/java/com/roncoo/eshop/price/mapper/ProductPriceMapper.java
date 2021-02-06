@@ -3,6 +3,8 @@ package com.roncoo.eshop.price.mapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -23,6 +25,9 @@ public interface ProductPriceMapper {
 	@Delete("DELETE FROM product_price WHERE id=#{id}")  
 	public void delete(Long id);
 	
-	@Select("SELECT * FROM product_price WHERE id=#{id}")  
+	@Select("SELECT * FROM product_price WHERE id=#{id}")
+	@Results({
+		@Result(column="product_id",property = "productId")
+	})
 	public ProductPrice findById(Long id);
 }
